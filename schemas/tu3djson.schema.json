@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tu3djson v0.1",
+  "description": "tu3djson specifications v0.1",
+
+  "definitions": {
+    "Solid": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "Solid"
+          ]
+        },
+        "boundaries": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        }
+      },
+      "required": [
+        "type",
+        "boundaries",
+        "vertices"
+      ],
+      "additionalProperties": false
+    },
+    "MultiSurface": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "MultiSurface"
+          ]
+        },
+        "boundaries": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        }
+      },
+      "required": [
+        "type",
+        "boundaries",
+        "vertices"
+      ],
+      "additionalProperties": false
+    }    
+  },
+
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": [
+        "tu3djson"
+      ]
+    },
+    "crs": {
+      "type": "string",
+      "pattern": "^(http|https)://www.opengis.net/def/crs/"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "geometry": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/MultiSurface"
+              },
+              {
+                "$ref": "#/definitions/Solid"
+              }
+            ]
+          },
+          "properties": { "type": "object" }
+        },
+        "required": [
+          "type", 
+          "geometry"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "type",
+    "features"
+  ],
+  "additionalProperties": false
+}
