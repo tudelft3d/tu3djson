@@ -4,19 +4,61 @@
   "description": "tu3djson specifications v0.1",
 
   "definitions": {
-    "Solid": {
-      "type": "object",
+    "_AbstractGeometry": {
       "properties": {
-        "type": {
-          "enum": [
-            "Solid"
-          ]
-        },
-        "boundaries": {
+        "vertices": {
           "type": "array",
           "items": {
             "type": "array",
             "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        }
+      },
+      "required": [ "vertices" ]
+    },
+    "MultiPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_AbstractGeometry"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "MultiPoint"
+              ]
+            },
+            "boundaries": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "boundaries"
+          ]
+        }
+      ]
+    },
+    "MultiLineString": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_AbstractGeometry"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "MultiLineString"
+              ]
+            },
+            "boundaries": {
               "type": "array",
               "items": {
                 "type": "array",
@@ -25,68 +67,120 @@
                 }
               }
             }
-          }
-        },
-        "vertices": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
-          }
-        }
-      },
-      "required": [
-        "type",
-        "boundaries",
-        "vertices"
-      ],
-      "additionalProperties": false
-    },
-    "MultiSurface": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "enum": [
-            "MultiSurface"
+          },
+          "required": [
+            "type",
+            "boundaries"
           ]
+        }
+      ]
+    },  
+    "MultiSurface": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_AbstractGeometry"
         },
-        "boundaries": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "MultiSurface"
+              ]
+            },
+            "boundaries": {
               "type": "array",
               "items": {
-                "type": "integer"
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
               }
             }
-          }
-        },
-        "vertices": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
-          }
+          },
+          "required": [
+            "type",
+            "boundaries"
+          ]
         }
-      },
-      "required": [
-        "type",
-        "boundaries",
-        "vertices"
-      ],
-      "additionalProperties": false
-    }    
+      ]      
+    },      
+    "Solid": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_AbstractGeometry"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "Solid"
+              ]
+            },
+            "boundaries": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "type",
+            "boundaries"
+          ]
+        }
+      ]      
+    },
+    "MultiSolid": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/_AbstractGeometry"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "MultiSolid"
+              ]
+            },
+            "boundaries": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }          
+            }
+          },
+          "required": [
+            "type",
+            "boundaries"
+          ]
+        }
+      ]      
+    }
   },
-
   "type": "object",
   "properties": {
     "type": {
