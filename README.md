@@ -75,17 +75,19 @@ It:
 
 ### Geometry object
 
-
   - **must** have one member with the name `"type"`, whose value must be either:
     - `"MultiPoint"`
-    - `"MultiLine"`
+    - `"MultiLineString"`
     - `"MultiSurface"`
     - `"CompositeSurface"`
     - `"Solid"`
     - `"MultiSolid"`
     - `"CompositeSolid"`
-  - **must** have one member with the name `"boundaries"`
+  - **must** have one member with the name `"boundaries"`, whose value is a hierarchy of arrays with integers (the depth depends on the Geometry object, see [this guide](https://www.cityjson.org/dev/geom-arrays/)). An integer refers to the index in the `"vertices"` array of the Geometry object, and it is 0-based (ie the first element in the array has the index "0", the second one "1", etc.).
   - **must** have one member with the name `"vertices"`, whose value is an array of coordinates of each vertex of the current Geometry object. Their position in this array (0-based) is used to represent the Geometry Object.
   - **must** have one member with the name `"vertices"`, whose value is an array of coordinates of each vertex of the current Geometry Object, stored with integers. Their position in this array (0-based) is used as an index to be referenced by `"boundaries"` of the Geometry Object.
 
 
+## Schemas
+
+In the `schemas/` folder.
