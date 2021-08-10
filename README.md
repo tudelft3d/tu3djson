@@ -1,4 +1,12 @@
 
+# todo and/or todiscuss
+
+- [] "version"?
+- [] other geometry object for single ones? like "Point" or "LineString"? Why having "Solid" then?
+- [] abolish "CompositeX" and just "MultiX"?
+
+
+
 # the tu3djson formal specification
 
 
