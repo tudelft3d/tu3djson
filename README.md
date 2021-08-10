@@ -12,7 +12,7 @@
 
 ## What is tu3djson?
 
-It stands for TU Delft 3D JSON specification, named after the [TU Delft 3D research group](https://3d.bk.tudelft.nl).
+It stands for TU Delft 3D JSON specification, named after the [TU Delft 3D geoinformation research group](https://3d.bk.tudelft.nl).
 It is meant as a simple format to store/exchange 3D features since [GeoJSON](https://geojson.org/) is restricted to 2D primitives stored in WGS84 (even if the elevation with respect to the WGS84 ellipsoid can be stored, it is only 2.5D and not 3D).
 
 
